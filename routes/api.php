@@ -22,3 +22,7 @@ Route::post('/todos', 'TodoController@store');
 Route::get('/todos/{id}', 'TodoController@show');
 Route::put('/todos/{id}', 'TodoController@update');
 Route::delete('/todos/{id}', 'TodoController@destroy');
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::resource('todos', 'TodoController');
+});
